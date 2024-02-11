@@ -6,10 +6,11 @@ on:
 
 permissions:
   # for create release tag
-  contents: read
+  contents: write
   # for push to ghcr.io registry.
   # write permission implies read permission.
   packages: write
+  
 
 jobs:
   build:
@@ -42,7 +43,7 @@ jobs:
       id: push-to-ghcr
       uses: redhat-actions/push-to-registry@v2
       with:
-        image: ${{ steps.build-image.outputs.image }}
+        image: KatsutoshiOtogawa/${{ steps.build-image.outputs.image }}
         tags: ${{ steps.build-image.outputs.tags }}
         registry: ${{ env.REGISTRY }}
         username: ${{ github.actor }}
