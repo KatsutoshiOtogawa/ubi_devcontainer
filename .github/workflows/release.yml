@@ -43,7 +43,7 @@ jobs:
         image: ${{ steps.build-image.outputs.image }}
         tags: ${{ steps.build-image.outputs.tags }}
         # registry: ${{ env.REGISTRY }}
-        registry: ghcr.io
+        registry: ghcr.io/KatsutoshiOtogawa
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
