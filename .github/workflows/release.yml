@@ -1,0 +1,218 @@
+name: Release
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  # for create release tag
+  contents: write
+  # for push to ghcr.io registry.
+  packages: write
+
+jobs:
+  build:
+    name: Build image
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: ubi-devcontainer
+      REGISTRY: ghcr.io/${{ github.repository_owner }}
+    steps:
+
+    - uses: actions/checkout@v4
+
+    - name: Log in to Red Hat Registry
+      uses: redhat-actions/podman-login@v1
+      with:
+        registry: registry.redhat.io
+        username: ${{ secrets.REGISTRY_REDHAT_IO_USER }}
+        password: ${{ secrets.REGISTRY_REDHAT_IO_PASSWORD }}
+    - name: Buildah Action
+      id: build-image
+      uses: redhat-actions/buildah-build@v2
+      with:
+        image: ${{ env.IMAGE_NAME }}
+        tags: latest ${{ github.sha }}
+        containerfiles: |
+          ./Containerfile
+
+    - name: Push to GitHub Container Repository
+      id: push-to-ghcr
+      uses: redhat-actions/push-to-registry@v2
+      with:
+        image: ${{ steps.build-image.outputs.image }}
+        tags: ${{ steps.build-image.outputs.tags }}
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+        # username: ${{ secrets.GHCR_USER }}
+        # password: ${{ secrets.GHCR_ACCESS_TOKEN }}
+  # rust-build:
+
+  #   env:
+  #     CARGO_TERM_COLOR: always
+  #   strategy:
+  #     matrix:
+  #       os: [ubuntu-20.04, windows-2019, macos-12]
+  #   # 必要になる
+  #   runs-on: ${{ matrix.os }}
+
+  #   steps:
+  #   - name: specific running os arch.
+  #     id: osarch
+  #     shell: bash
+  #     run: |
+  #       target=""
+  #       suffix=""
+  #       ext=""
+  #       if [ "${{ matrix.os }}" = "ubuntu-20.04" ]; then
+  #         target="x86_64-unknown-linux-gnu"
+  #         suffix="lib"
+  #         ext="so"
+  #       elif [ "${{ matrix.os }}" = "windows-2019" ]; then
+  #         target="x86_64-pc-windows-msvc"
+  #         ext="dll"
+  #       elif [ "${{ matrix.os }}" = "macos-12" ]; then
+  #         target="x86_64-apple-darwin"
+  #         suffix="lib"
+  #         ext="dylib"
+  #       else
+  #         echo "error"
+  #       fi
+  #       echo "target=${target}" >> "$GITHUB_OUTPUT"
+  #       echo "suffix=${suffix}" >> "$GITHUB_OUTPUT"
+  #       echo "ext=${ext}" >> "$GITHUB_OUTPUT"
+
+  #   - uses: actions/checkout@v4
+  #   - name: Build
+  #     run: cd rust_src && cargo build --target ${{ steps.osarch.outputs.target }} --verbose --release
+
+  #   - name: upload share_library
+  #     uses: actions/upload-artifact@v3
+  #     with:
+  #       name: ${{ steps.osarch.outputs.target }}
+  #       path: rust_src/target/${{ steps.osarch.outputs.target }}/release/${{ steps.osarch.outputs.suffix }}rust_src.${{ steps.osarch.outputs.ext }}
+  #       if-no-files-found: error
+
+  #   # - name: Run tests
+  #   #   run: cargo test --verbose
+
+  # csharp-build:
+  #   # 必要になる
+  #   runs-on: windows-2019
+
+  #       # id: tag_version
+  #       # run:  |
+  #       #   $tag = $env:GITHUB_REF -replace 'refs/tags/', ''
+  #       #   echo $tag
+  #       #   echo "tag=${tag}" >> $env:GITHUB_OUTPUT
+  #   steps:
+  #   # Install the .NET Core workload
+  #   - name: Install .NET Core
+  #     uses: actions/setup-dotnet@v3
+  #     with:
+  #       dotnet-version: 7.0.x
+
+  #   - uses: actions/checkout@v4
+  #   - name: Build
+  #     run: cd csharp_src && dotnet build --configuration Release
+
+  #   - name: upload share_library net6.0-artifact
+  #     uses: actions/upload-artifact@v3
+  #     with:
+  #       name: net6.0-artifact
+  #       path: csharp_src/lib/bin/Release/net6.0/lib.dll
+  #       if-no-files-found: error
+        
+  #   - name: upload share_library net7.0-artifact
+  #     uses: actions/upload-artifact@v3
+  #     with:
+  #       name: net7.0-artifact
+  #       path: csharp_src/lib/bin/Release/net7.0/lib.dll
+  #       if-no-files-found: error
+
+  #   - name: upload share_library net48-artifact
+  #     uses: actions/upload-artifact@v3
+  #     with:
+  #       name: net48-artifact
+  #       path: csharp_src/lib/bin/Release/net48/lib.dll
+  #       if-no-files-found: error
+
+  # powershell_release:
+  #   runs-on: windows-2019
+  #   needs: [rust-build, csharp-build]
+
+
+  #   steps:
+  #     - name: Setup repo
+  #       uses: actions/checkout@v4
+
+  #     - name: Get Tag Version
+  #       id: tag_version
+  #       run:  |
+  #         $tag = $env:GITHUB_REF -replace 'refs/tags/', ''
+  #         echo $tag
+  #         echo "tag=${tag}" >> $env:GITHUB_OUTPUT
+  #     #  tempalteから.psd1ファイルを作成する。
+  #     - name: Generate PSD1
+  #       run: |
+  #         $tagVersion = "${{ steps.tag_version.outputs.tag }}"
+  #         echo $tagVersion
+  #         $tagVersion = $tagVersion -replace '^v', ''  # 先頭の 'v' を削除
+  #         $content = Get-Content PowershellInvokeRust/PowershellInvokeRust.psd1 -Raw
+  #         # replace 
+  #         $content  -replace '#tagVersion', "$tagVersion" |
+  #           Set-Content -Path PowershellInvokeRust/PowershellInvokeRust.psd1
+        
+  #     - name: Download artifacts x86_64-unknown-linux-gnu
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: x86_64-unknown-linux-gnu
+  #         path: ./PowershellInvokeRust/share_lib/x86_64-unknown-linux-gnu/
+
+  #     - name: Download artifacts x86_64-pc-windows-msvc
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: x86_64-pc-windows-msvc
+  #         path: ./PowershellInvokeRust/share_lib/x86_64-pc-windows-msvc/
+
+  #     - name: Download artifacts x86_64-apple-darwin
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: x86_64-apple-darwin
+  #         path: ./PowershellInvokeRust/share_lib/x86_64-apple-darwin/
+
+  #     - name: Download artifacts net6.0
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: net6.0-artifact
+  #         path: ./PowershellInvokeRust/csharp_dll/net6.0/
+
+  #     - name: Download artifacts net7.0
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: net7.0-artifact
+  #         path: ./PowershellInvokeRust/csharp_dll/net7.0/
+
+  #     - name: Download artifacts net48
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: net48-artifact
+  #         path: ./PowershellInvokeRust/csharp_dll/net48/
+
+  #     - name: Publish Module
+  #       env:
+  #         NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+  #       run: Publish-Module -Path ./PowershellInvokeRust -NuGetApiKey  "$env:NUGET_API_KEY"
+
+  #     - name: Release tag
+  #       uses: softprops/action-gh-release@v1
+  #       if: startsWith(github.ref, 'refs/tags/')
+  #       with:
+  #         body: |
+  #           Changes in this Release
+  #           - First Change
+  #           - Second Change
+  #         draft: false
+  #         prerelease: false
