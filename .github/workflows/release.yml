@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   ubi8:
-    name: Build image
+    name: Build ubi8 image
     runs-on: ubuntu-latest
     env:
       IMAGE_NAME: ubi-devcontainer
@@ -50,7 +50,7 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
   ubi9:
-    name: Build image
+    name: Build ubi9 image
     runs-on: ubuntu-latest
     env:
       IMAGE_NAME: ubi-devcontainer
