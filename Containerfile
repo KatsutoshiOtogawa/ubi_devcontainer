@@ -1,5 +1,7 @@
-ARG VARIANT=9.3-1552
-FROM registry.access.redhat.com/ubi9/ubi:${VARIANT}
+# ARG VARIANT=9.3
+# FROM registry.access.redhat.com/ubi9/ubi:${VARIANT}
+ARG VARIANT=8.9
+FROM registry.access.redhat.com/ubi8/ubi:${VARIANT}
 
 RUN dnf update -y
 
