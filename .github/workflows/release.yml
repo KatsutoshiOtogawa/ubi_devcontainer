@@ -13,7 +13,7 @@ permissions:
   
 
 jobs:
-  build:
+  ubi8:
     name: Build image
     runs-on: ubuntu-latest
     env:
@@ -35,9 +35,9 @@ jobs:
       uses: redhat-actions/buildah-build@v2
       with:
         image: ${{ github.actor }}/${{ env.IMAGE_NAME }}
-        tags: latest ${{ github.sha }}
+        tags: latest ubi8 ${{ github.sha }}
         containerfiles: |
-          ./Containerfile
+          ./ubi8/Containerfile
 
     - name: Push to GitHub Container Repository
       id: push-to-ghcr
@@ -49,6 +49,41 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
+  ubi9:
+    name: Build image
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: ubi-devcontainer
+      # REGISTRY: ghcr.io/${{ github.repository_owner }}
+      REGISTRY: ghcr.io
+    steps:
+
+    - uses: actions/checkout@v4
+
+    - name: Log in to Red Hat Registry
+      uses: redhat-actions/podman-login@v1
+      with:
+        registry: registry.redhat.io
+        username: ${{ secrets.REGISTRY_REDHAT_IO_USER }}
+        password: ${{ secrets.REGISTRY_REDHAT_IO_PASSWORD }}
+    - name: Buildah Action
+      id: build-image
+      uses: redhat-actions/buildah-build@v2
+      with:
+        image: ${{ github.actor }}/${{ env.IMAGE_NAME }}
+        tags: latest ubi9 ${{ github.sha }}
+        containerfiles: |
+          ./ubi9/Containerfile
+
+    - name: Push to GitHub Container Repository
+      id: push-to-ghcr
+      uses: redhat-actions/push-to-registry@v2
+      with:
+        image: ${{ steps.build-image.outputs.image }}
+        tags: ${{ steps.build-image.outputs.tags }}
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
         # username: ${{ secrets.GHCR_USER }}
         # password: ${{ secrets.GHCR_ACCESS_TOKEN }}
   # rust-build:
