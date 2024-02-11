@@ -6,7 +6,7 @@ on:
 
 permissions:
   # for create release tag
-  contents: write
+  contents: read
   # for push to ghcr.io registry.
   # write permission implies read permission.
   packages: write
