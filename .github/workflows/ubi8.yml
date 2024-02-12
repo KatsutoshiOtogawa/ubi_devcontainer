@@ -1,11 +1,19 @@
 name: build ubi8 image
 
 on:
+  schedule:
+    # 分 時 日 月 曜日
+    - cron:  '0 13 1 * *'
   push:
     paths:
       - 'ubi8/**'
+      - '!ubi8/README.md'
       - '.github/workflows/ubi8.yml'
   pull_request:
+    paths:
+      - 'ubi8/**'
+      - '!ubi8/README.md'
+      - '.github/workflows/ubi8.yml'
 
 # write permission implies read permission.
 permissions:

@@ -1,4 +1,4 @@
-name: Build gentoo image
+name: Build centos9s image
 
 on:
   schedule:
@@ -6,14 +6,14 @@ on:
     - cron:  '0 13 1 * *'
   push:
     paths:
-      - 'gentoo/**'
-      - '!gentoo/README.md'
-      - '.github/workflows/gentoo.yml'
+      - 'centos9s/**'
+      - '!centos9s/README.md'
+      - '.github/workflows/centos9s.yml'
   pull_request:
     paths:
-      - 'gentoo/**'
-      - '!gentoo/README.md'
-      - '.github/workflows/gentoo.yml'
+      - 'centos9s/**'
+      - '!centos9s/README.md'
+      - '.github/workflows/centos9s.yml'
 
 # write permission implies read permission.
 permissions:
@@ -24,8 +24,8 @@ permissions:
   
 
 jobs:
-  gentoo:
-    name: packaging gentoo image
+  centos8s:
+    name: packaging centos8s image
     runs-on: ubuntu-latest
     env:
       IMAGE_NAME: ubi-devcontainer
@@ -50,7 +50,7 @@ jobs:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         tags: |
           latest
-          gentoo
+          centos9s
           ${{ github.sha }}
 
     # This step uses the `docker/build-push-action` action to build the image, based on your repository's `Dockerfile`. If the build succeeds, it pushes the image to GitHub Packages.
@@ -59,7 +59,7 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
-        file: gentoo/Containerfile
+        file: centos9s/Containerfile
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
