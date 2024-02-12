@@ -98,7 +98,7 @@ if [ "${PACKAGES_ALREADY_INSTALLED}" != "true" ]; then
         app-admin/sudo \
         sys-fs/ncdu \
         sys-apps/man-db \
-        dev-util/strace \
+        dev-debug/strace \
         sys-apps/man-pages \
         sys-apps/init-system-helpers
         "
