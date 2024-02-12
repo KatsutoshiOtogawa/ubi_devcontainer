@@ -1,5 +1,5 @@
 # ARG VARIANT=9.3
-FROM gentoo/portage:stage3-amd64-systemd-mergedusr
+FROM gentoo/stage3:amd64-systemd-mergedusr
 
 COPY common-gentoo.sh .
 
