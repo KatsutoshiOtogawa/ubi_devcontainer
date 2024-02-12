@@ -3,9 +3,6 @@ FROM registry.access.redhat.com/ubi9/ubi:${VARIANT}
 
 RUN dnf update -y
 
-# vscode devcontainer だとプリインストールされているので必須。
-RUN dnf install git -y
-
 ARG INSTALL_ZSH=false
 ARG USERNAME=vscode
 ARG USER_UID=1000
