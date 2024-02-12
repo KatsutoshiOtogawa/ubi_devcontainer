@@ -1,7 +1,7 @@
 # ARG VARIANT=9.3
 FROM gentoo/stage3:amd64-systemd-mergedusr
 
-COPY common-gentoo.sh .
+COPY gentoo/common-gentoo.sh .
 
 RUN emerge-rsync
 
