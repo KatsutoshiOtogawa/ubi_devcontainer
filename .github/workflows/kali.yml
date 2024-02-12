@@ -1,4 +1,4 @@
-name: Build gentoo image
+name: Build kali image
 
 on:
   schedule:
@@ -6,14 +6,14 @@ on:
     - cron:  '0 13 1 * *'
   push:
     paths:
-      - 'gentoo/**'
-      - '!gentoo/README.md'
-      - '.github/workflows/gentoo.yml'
+      - 'kali/**'
+      - '!kali/README.md'
+      - '.github/workflows/kali.yml'
   pull_request:
     paths:
-      - 'gentoo/**'
-      - '!gentoo/README.md'
-      - '.github/workflows/gentoo.yml'
+      - 'kali/**'
+      - '!kali/README.md'
+      - '.github/workflows/kali.yml'
 
 # write permission implies read permission.
 permissions:
@@ -24,10 +24,11 @@ permissions:
   
 
 jobs:
-  gentoo:
-    name: packaging gentoo image
+  kali:
+    name: packaging kali image
     runs-on: ubuntu-latest
     env:
+      # IMAGE_NAME: ubi-devcontainer
       IMAGE_NAME: ${{ github.repository }}
       REGISTRY: ghcr.io
     steps:
@@ -50,7 +51,7 @@ jobs:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         tags: |
           latest
-          gentoo
+          kali
           ${{ github.sha }}
 
     # This step uses the `docker/build-push-action` action to build the image, based on your repository's `Dockerfile`. If the build succeeds, it pushes the image to GitHub Packages.
@@ -59,7 +60,7 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
-        file: gentoo/Containerfile
+        file: kali/Containerfile
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
