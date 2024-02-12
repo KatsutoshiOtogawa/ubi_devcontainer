@@ -1,4 +1,5 @@
 
+# gentoo stage3 devcontainer image
 
 
-https://github.com/gentoo/gentoo-docker-images
+base image from [gentoo-docker-images](https://github.com/gentoo/gentoo-docker-images)

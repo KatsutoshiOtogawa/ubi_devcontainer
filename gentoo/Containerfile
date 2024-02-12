@@ -3,7 +3,7 @@ FROM gentoo/stage3:amd64-systemd-mergedusr
 
 COPY gentoo/common-gentoo.sh .
 
-RUN emerge-rsync
+RUN emerge-webrsync
 
 ARG INSTALL_ZSH=false
 ARG USERNAME=vscode
