@@ -28,7 +28,8 @@ jobs:
     name: packaging centos8s image
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: ubi-devcontainer
+      # IMAGE_NAME: ubi-devcontainer
+      IMAGE_NAME: ${{ github.repository }}
       REGISTRY: ghcr.io
     steps:
 
