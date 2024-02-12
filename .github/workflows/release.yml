@@ -8,11 +8,11 @@ on:
       - 'ubi9/**'
   pull_request:
 
+# write permission implies read permission.
 permissions:
   # for create release tag
   contents: write
   # for push to ghcr.io registry.
-  # write permission implies read permission.
   packages: write
   
 
@@ -22,7 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IMAGE_NAME: ubi-devcontainer
-      # REGISTRY: ghcr.io/${{ github.repository_owner }}
       REGISTRY: ghcr.io
     steps:
 
@@ -58,7 +57,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IMAGE_NAME: ubi-devcontainer
-      # REGISTRY: ghcr.io/${{ github.repository_owner }}
       REGISTRY: ghcr.io
     steps:
 
@@ -93,7 +91,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IMAGE_NAME: ubi-devcontainer
-      # REGISTRY: ghcr.io/${{ github.repository_owner }}
       REGISTRY: ghcr.io
     steps:
 
@@ -122,7 +119,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: latest gentoo ${{ steps.meta.outputs.tags }}
+        tags: latest gentoo ${{ github.sha }}
         labels: ${{ steps.meta.outputs.labels }}
         
     # - name: Buildah Action
