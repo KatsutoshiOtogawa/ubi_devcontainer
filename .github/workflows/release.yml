@@ -6,6 +6,7 @@ on:
       - 'gentoo/**'
       - 'ubi8/**'
       - 'ubi9/**'
+      - '.github/workflows/**'
   pull_request:
 
 # write permission implies read permission.
