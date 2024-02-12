@@ -7,7 +7,7 @@ ARG USERNAME=vscode
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
-RUN curl https://raw.githubusercontent.com/microsoft/vscode-dev-containers/v0.245.2/script-library/common-debian.sh -o common-debian.sh
+RUN wget https://raw.githubusercontent.com/microsoft/vscode-dev-containers/v0.245.2/script-library/common-debian.sh
 
 RUN bash common-debian.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${USER_GID}" \
     && apt clean  \
