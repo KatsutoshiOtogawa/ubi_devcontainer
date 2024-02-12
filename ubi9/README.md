@@ -12,3 +12,5 @@ Error:
   - package curl-minimal-7.76.1-26.el9_3.2.x86_64 from ubi-9-baseos-rpms conflicts with curl provided by curl-7.76.1-26.el9_3.2.x86_64 from ubi-9-baseos-rpms
   - conflicting requests
 (try to add '--allowerasing' to command line to replace conflicting packages or '--skip-broken' to skip uninstallable packages or '--nobest' to use not only best candidate packages)
+
+https://quay.io/repository/centos/centos
