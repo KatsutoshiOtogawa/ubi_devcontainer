@@ -1,5 +1,5 @@
 ARG VARIANT=
-FROM fedora/fedora:${VARIANT}
+FROM fedora:${VARIANT}
 
 RUN dnf update -y
 
