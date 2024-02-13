@@ -49,7 +49,6 @@ jobs:
       with:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         tags: |
-          latest
           gentoo
           ${{ github.sha }}
 

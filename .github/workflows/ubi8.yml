@@ -45,7 +45,7 @@ jobs:
       uses: redhat-actions/buildah-build@v2
       with:
         image: ${{ github.actor }}/${{ env.IMAGE_NAME }}
-        tags: latest ubi8 ${{ github.sha }}
+        tags: ubi8 ${{ github.sha }}
         containerfiles: |
           ./ubi8/Containerfile
 
