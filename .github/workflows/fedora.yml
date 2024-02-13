@@ -25,13 +25,13 @@ permissions:
 
 jobs:
   build-image:
-  strategy:
-    matrix:
-      entry:
-        - { VARIANT: '38'}
-        - { VARIANT: '39'}
-        - { VARIANT: '40'}
-        - { VARIANT: 'rawhide'}
+    strategy:
+      matrix:
+        entry:
+          - { VARIANT: '38'}
+          - { VARIANT: '39'}
+          - { VARIANT: '40'}
+          - { VARIANT: 'rawhide'}
     name: packaging fedora image
     runs-on: ubuntu-latest
     env:
