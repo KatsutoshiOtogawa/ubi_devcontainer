@@ -24,7 +24,7 @@ permissions:
   
 
 jobs:
-  gentoo:
+  build-image:
     name: packaging gentoo image
     runs-on: ubuntu-latest
     env:

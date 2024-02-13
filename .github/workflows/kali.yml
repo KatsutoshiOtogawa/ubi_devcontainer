@@ -24,7 +24,7 @@ permissions:
   
 
 jobs:
-  kali:
+  build-image:
     name: packaging kali image
     runs-on: ubuntu-latest
     env:

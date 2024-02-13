@@ -24,11 +24,11 @@ permissions:
   
 
 jobs:
-  ubi9:
+  build-image:
     name: packaging ubi9 image
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: ubi-devcontainer
+      IMAGE_NAME: devcontainers
       REGISTRY: ghcr.io
     steps:
 

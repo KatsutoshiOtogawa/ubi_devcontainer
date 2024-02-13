@@ -24,7 +24,7 @@ permissions:
   
 
 jobs:
-  centos8s:
+  build-image:
     name: packaging centos8s image
     runs-on: ubuntu-latest
     env:

@@ -24,11 +24,11 @@ permissions:
   
 
 jobs:
-  ubi8:
+  build-image:
     name: packaging ubi8 image
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: ubi-devcontainer
+      IMAGE_NAME: devcontainers
       REGISTRY: ghcr.io
     steps:
 
@@ -58,3 +58,5 @@ jobs:
         registry: ${{ env.REGISTRY }}
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
+
+# needsを使ってfeaturesが実行されたら
