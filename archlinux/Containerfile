@@ -3,7 +3,7 @@ FROM archlinux:base
 COPY archlinux/common-archlinux.sh /
 
 # enable multilib for install lib32-icu.
-RUN sed -i '|^#\[multilib\]|a Include = /etc/pacman.d/mirrorlist' /etc/pacman.conf
+RUN sed -i '/^#\[multilib\]/a Include = \/etc\/pacman.d\/mirrorlist' /etc/pacman.conf
 RUN sed -i 's/^#\[multilib\]/\[multilib\]/' /etc/pacman.conf
 
 RUN pacman -Syu --noconfirm
