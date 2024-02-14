@@ -1,4 +1,4 @@
-name: Build kali image
+name: Build ubuntu image
 
 on:
   schedule:
@@ -6,14 +6,14 @@ on:
     - cron:  '0 13 1 * *'
   push:
     paths:
-      - 'kali/**'
-      - '!kali/README.md'
-      - '.github/workflows/kali.yml'
+      - 'ubuntu/**'
+      - '!ubuntu/README.md'
+      - '.github/workflows/ubuntu.yml'
   pull_request:
     paths:
-      - 'kali/**'
-      - '!kali/README.md'
-      - '.github/workflows/kali.yml'
+      - 'ubuntu/**'
+      - '!ubuntu/README.md'
+      - '.github/workflows/ubuntu.yml'
 
 # write permission implies read permission.
 permissions:
@@ -25,7 +25,13 @@ permissions:
 
 jobs:
   build-image:
-    name: packaging kali image
+    strategy:
+      matrix:
+        entry:
+          - { VARIANT: 'kinetic'} # 22.10
+          - { VARIANT: 'lunar'} # 23.04
+          - { VARIANT: 'mantic'} # 23.10
+    name: packaging ubuntu image
     runs-on: ubuntu-latest
     env:
       # IMAGE_NAME: ubi-devcontainer
@@ -55,8 +61,8 @@ jobs:
       with:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         tags: |
-          kali
-          kali_${{ steps.current.outputs.datetime }}
+          ubuntu_${{ matrix.entry.VARIANT }}
+          ubuntu_${{ matrix.entry.VARIANT }}_${{ steps.current.outputs.datetime }}
           ${{ github.sha }}
 
     # This step uses the `docker/build-push-action` action to build the image, based on your repository's `Dockerfile`. If the build succeeds, it pushes the image to GitHub Packages.
@@ -65,7 +71,9 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
-        file: kali/Containerfile
+        build-args: |
+          VARIANT=${{ matrix.entry.VARIANT }}
+        file: ubuntu/Containerfile
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}

@@ -34,8 +34,10 @@ rhel distribution and gentoo
 
 | image           | url                                                    | features | stability |
 | :---            | :---:                                                  | ---:     | ---:      |
-| ubi8            | ghcr.io/otogawakatsutoshi/devcontainers:ubi8           |          | stable    |
-| ubi9            | ghcr.io/otogawakatsutoshi/devcontainers:ubi9           |          | stable    |
+| ubi8.8            | ghcr.io/otogawakatsutoshi/devcontainers:ubi8_8.8           |          | stable    |
+| ubi8.9            | ghcr.io/otogawakatsutoshi/devcontainers:ubi8_8.9           |          | stable    |
+| ubi9.2            | ghcr.io/otogawakatsutoshi/devcontainers:ubi9_9.2           |          | stable    |
+| ubi9.3            | ghcr.io/otogawakatsutoshi/devcontainers:ubi9_9.3           |          | stable    |
 | centos stream8  | ghcr.io/otogawakatsutoshi/devcontainers:centos8s       |          | stable    |
 | centos stream9  | ghcr.io/otogawakatsutoshi/devcontainers:centos9s       |          | stable    |
 | fedora 38       | ghcr.io/otogawakatsutoshi/devcontainers:fedora_38      |          | stable    |

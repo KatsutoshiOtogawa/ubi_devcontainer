@@ -25,6 +25,11 @@ permissions:
 
 jobs:
   build-image:
+    strategy:
+      matrix:
+        entry:
+          - { VARIANT: '8.8'}
+          - { VARIANT: '8.9'}
     name: packaging ubi8 image
     runs-on: ubuntu-latest
     env:
@@ -33,6 +38,11 @@ jobs:
     steps:
 
     - uses: actions/checkout@v4
+
+    # github action persist timezone is UTC.
+    - name: Set current datetime for use.
+      id: current
+      run: echo "datetime=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
 
     - name: Log in to Red Hat Registry
       uses: redhat-actions/podman-login@v1
@@ -45,7 +55,7 @@ jobs:
       uses: redhat-actions/buildah-build@v2
       with:
         image: ${{ github.actor }}/${{ env.IMAGE_NAME }}
-        tags: ubi8 ${{ github.sha }}
+        tags: ubi8 ubi8_${{ matrix.entry.VARIANT }} ubi8_${{ matrix.entry.VARIANT }}_${{ steps.current.outputs.datetime }} ${{ github.sha }}
         containerfiles: |
           ./ubi8/Containerfile
 

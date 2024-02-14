@@ -35,6 +35,11 @@ jobs:
 
     - uses: actions/checkout@v4
 
+    # github action persist timezone is UTC.
+    - name: Set current datetime for use.
+      id: current
+      run: echo "datetime=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
+
     - name: Log in to the Container registry
       uses: docker/login-action@v3
       with:
@@ -51,6 +56,7 @@ jobs:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         tags: |
           centos8s
+          centos8s_${{ steps.current.outputs.datetime }}
           ${{ github.sha }}
 
     # This step uses the `docker/build-push-action` action to build the image, based on your repository's `Dockerfile`. If the build succeeds, it pushes the image to GitHub Packages.
