@@ -50,10 +50,13 @@ jobs:
         registry: registry.redhat.io
         username: ${{ secrets.REGISTRY_REDHAT_IO_USER }}
         password: ${{ secrets.REGISTRY_REDHAT_IO_PASSWORD }}
+
     - name: Buildah Action
       id: build-image
       uses: redhat-actions/buildah-build@v2
       with:
+        build-args: |
+          VARIANT=${{ matrix.entry.VARIANT }}
         image: ${{ github.actor }}/${{ env.IMAGE_NAME }}
         tags: ubi8 ubi8_${{ matrix.entry.VARIANT }} ubi8_${{ matrix.entry.VARIANT }}_${{ steps.current.outputs.datetime }} ${{ github.sha }}
         containerfiles: |
