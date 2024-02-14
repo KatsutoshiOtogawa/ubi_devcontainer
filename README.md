@@ -32,12 +32,16 @@ rhel distribution and gentoo
 
 ## support docker image
 
-| image          | url                                                    | features | stability |
-| :---           | :---:                                                  | ---:     | ---:      |
-| ubi8           | ghcr.io/otogawakatsutoshi/devcontainers:ubi8           |          | stable    |
-| ubi9           | ghcr.io/otogawakatsutoshi/devcontainers:ubi9           |          | stable    |
-| centos stream8 | ghcr.io/otogawakatsutoshi/devcontainers:centos8s       |          | stable    |
-| centos stream9 | ghcr.io/otogawakatsutoshi/devcontainers:centos9s       |          | stable    |
-| kali           | ghcr.io/otogawakatsutoshi/devcontainers:kali           |          | stable    |
-| debian testing | ghcr.io/otogawakatsutoshi/devcontainers:debian_testing |          | unstable  |
-| debian sid     | ghcr.io/otogawakatsutoshi/devcontainers:debian_sid     |          |experimental |
+| image           | url                                                    | features | stability |
+| :---            | :---:                                                  | ---:     | ---:      |
+| ubi8            | ghcr.io/otogawakatsutoshi/devcontainers:ubi8           |          | stable    |
+| ubi9            | ghcr.io/otogawakatsutoshi/devcontainers:ubi9           |          | stable    |
+| centos stream8  | ghcr.io/otogawakatsutoshi/devcontainers:centos8s       |          | stable    |
+| centos stream9  | ghcr.io/otogawakatsutoshi/devcontainers:centos9s       |          | stable    |
+| fedora 38       | ghcr.io/otogawakatsutoshi/devcontainers:fedora_38      |          | stable    |
+| fedora 39       | ghcr.io/otogawakatsutoshi/devcontainers:fedora_39      |          | stable    |
+| fedora 40       | ghcr.io/otogawakatsutoshi/devcontainers:fedora_40      |          | stable    |
+| fedora rawhide  | ghcr.io/otogawakatsutoshi/devcontainers:fedora_rawhide |          | stable    |
+| kali            | ghcr.io/otogawakatsutoshi/devcontainers:kali           |          | stable    |
+| debian testing  | ghcr.io/otogawakatsutoshi/devcontainers:debian_testing |          | unstable  |
+| debian unstable | ghcr.io/otogawakatsutoshi/devcontainers:debian_unstable|          |experimental |
