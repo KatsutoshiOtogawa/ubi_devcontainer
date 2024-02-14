@@ -1,0 +1,16 @@
+ARG VARIANT=
+FROM oraclelinux:${VARIANT}
+
+RUN yum update -y
+
+ARG INSTALL_ZSH=false
+ARG USERNAME=vscode
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
+RUN curl https://raw.githubusercontent.com/microsoft/vscode-dev-containers/v0.245.2/script-library/common-redhat.sh -o common-redhat.sh
+
+RUN bash common-redhat.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${USER_GID}" \
+    && yum clean all && rm -rf common-redhat.sh
+
+WORKDIR /workspace
