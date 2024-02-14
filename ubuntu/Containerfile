@@ -5,7 +5,7 @@ RUN apt update -y && apt upgrade -y
 
 ARG INSTALL_ZSH=false
 ARG USERNAME=vscode
-ARG USER_UID=1000
+# ARG USER_UID=1000
 # ARG USER_GID=$USER_UID
 
 RUN apt install -y wget 
@@ -13,7 +13,7 @@ RUN apt install -y wget
 RUN wget https://raw.githubusercontent.com/microsoft/vscode-dev-containers/v0.245.2/script-library/common-debian.sh
 
 # RUN bash common-debian.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${USER_GID}"
-RUN bash common-debian.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}"
+RUN bash common-debian.sh "${INSTALL_ZSH}" "${USERNAME}"
 RUN apt clean  \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf common-debian.sh
