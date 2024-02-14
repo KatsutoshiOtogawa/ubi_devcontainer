@@ -93,7 +93,7 @@ if [ "${PACKAGES_ALREADY_INSTALLED}" != "true" ]; then
 
     # Install OpenSSL 1.0 compat if needed
     if pacman -Qi openssl-1.1 >/dev/null 2>&1; then
-        package_list="${package_list} "
+        package_list="${package_list} core/openssl-1.1"
     fi
     
     echo "Packages to verify are installed: ${package_list}"
