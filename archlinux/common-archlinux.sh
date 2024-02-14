@@ -110,7 +110,7 @@ fi
 # archlinux
 # Update to latest versions of packages
 if [ "${UPGRADE_PACKAGES}" = "true" ]; then
-    pacmanc -Syu --noconfirm
+    pacman -Syu --noconfirm
 fi
 
 # Ensure at least the en_US.UTF-8 UTF-8 locale is available.
