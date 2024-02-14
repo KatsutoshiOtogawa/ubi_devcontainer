@@ -1,0 +1,21 @@
+FROM archlinux:base
+
+COPY archlinux/common-archlinux.sh /
+
+# enable multilib for install lib32-icu.
+RUN sed -i 's/#[multilib]/[multilib]/' /etc/pacman.conf
+RUN sed -i 's|#/Include = /etc/pacman.d/mirrorlist|Include = /etc/pacman.d/mirrorlist|' /etc/pacman.conf
+
+RUN pacman -Syu --noconfirm
+
+ARG INSTALL_ZSH=false
+ARG USERNAME=vscode
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
+
+RUN bash /common-archlinux.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${USER_GID}"
+RUN pacman -Sc --noconfirm
+RUN rm -rf /common-archlinux.sh
+
+WORKDIR /workspace
