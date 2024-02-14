@@ -28,7 +28,7 @@ jobs:
     strategy:
       matrix:
         entry:
-          - { VARIANT: 'kinetic'} # 22.10
+          # - { VARIANT: 'kinetic'} # 22.10 aptレポが404になる。
           - { VARIANT: 'lunar'} # 23.04
           - { VARIANT: 'mantic'} # 23.10
     name: packaging ubuntu image
