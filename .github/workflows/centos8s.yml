@@ -38,7 +38,7 @@ jobs:
     # github action persist timezone is UTC.
     - name: Set current datetime for use.
       id: current
-      run: echo "datetime=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
+      run: echo "datetime=$(date +'%Y%m%d%H%M%S')" >> "$GITHUB_OUTPUT"
 
     - name: Log in to the Container registry
       uses: docker/login-action@v3
