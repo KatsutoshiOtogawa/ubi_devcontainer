@@ -53,6 +53,8 @@ Write the path to the image written in the support docker image in the image of 
 | debian unstable | ghcr.io/otogawakatsutoshi/devcontainers:debian_unstable|experimental |
 | archlinux       | ghcr.io/otogawakatsutoshi/devcontainers:archlinux      | stable    |
 
+If you want to use an image with a specific date time, use the date and time written in the [Packages](https://github.com/otogawakatsutoshi/devcontainers/pkgs/container/devcontainers).
+
 ## comming soon
 
 ubuntu (not lts version), gentoo, nixos,Opensuse leap, Opensuse Tumbleweed!
