@@ -10,7 +10,7 @@ ARG USER_GID=$USER_UID
 RUN curl https://raw.githubusercontent.com/microsoft/vscode-dev-containers/v0.245.2/script-library/common-redhat.sh -o common-redhat.sh
 
 # patch
-RUN sed -i '/package_list="\/a tar \\' /etc/pacman.conf
+RUN sed -i '/package_list=/a tar \\' /etc/pacman.conf
 RUN sed -i '/redhat-lsb-core/d' common-redhat.sh
 RUN sed -i '/curl/d' common-redhat.sh
 RUN sed -i '/gnupg2/d' common-redhat.sh
