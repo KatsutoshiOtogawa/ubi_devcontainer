@@ -40,7 +40,7 @@ Write the path to the image written in the support docker image in the image of 
 | ubi8.9          | ghcr.io/otogawakatsutoshi/devcontainers:ubi8_8.9       | stable    |
 | ubi9.2          | ghcr.io/otogawakatsutoshi/devcontainers:ubi9_9.2       | stable    |
 | ubi9.3          | ghcr.io/otogawakatsutoshi/devcontainers:ubi9_9.3       | stable    |
-| oraclelinux7.9  | ghcr.io/otogawakatsutoshi/devcontainers:oraclelinux_7.9| stable    |
+| oraclelinux7.9  | ghcr.io/otogawakatsutoshi/devcontainers:oraclelinux_7.9| unstable  |
 | oraclelinux8.9  | ghcr.io/otogawakatsutoshi/devcontainers:oraclelinux_8.9| stable    |
 | amazonlinux2    | ghcr.io/otogawakatsutoshi/devcontainers:amazonlinux2   | unstable  |
 | amazonlinux2023 | ghcr.io/otogawakatsutoshi/devcontainers:amazonlinux2023| stable    |
