@@ -55,7 +55,7 @@ jobs:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         tags: |
           archlinux
-          archlinux${{ steps.current.outputs.datetime }}
+          archlinux_${{ steps.current.outputs.datetime }}
           ${{ github.sha }}
 
     # This step uses the `docker/build-push-action` action to build the image, based on your repository's `Dockerfile`. If the build succeeds, it pushes the image to GitHub Packages.
