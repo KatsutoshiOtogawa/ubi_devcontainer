@@ -1,10 +1,10 @@
 # devcontainers
 
-rhel distribution and gentoo
+vscode devcontainer images.
 
 ## how to use
 
-devcontainer
+Write the path to the image written in the support docker image in the image of devcontainer.json.
 
 ```json:.devcontainer/devcontainer.json
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
@@ -40,7 +40,7 @@ devcontainer
 | ubi8.9          | ghcr.io/otogawakatsutoshi/devcontainers:ubi8_8.9       | stable    |
 | ubi9.2          | ghcr.io/otogawakatsutoshi/devcontainers:ubi9_9.2       | stable    |
 | ubi9.3          | ghcr.io/otogawakatsutoshi/devcontainers:ubi9_9.3       | stable    |
-| amazonlinux2    | ghcr.io/otogawakatsutoshi/devcontainers:amazonlinux2   | stable    |
+| amazonlinux2    | ghcr.io/otogawakatsutoshi/devcontainers:amazonlinux2   | unstable  |
 | amazonlinux2023 | ghcr.io/otogawakatsutoshi/devcontainers:amazonlinux2023| stable    |
 | centos stream8  | ghcr.io/otogawakatsutoshi/devcontainers:centos8s       | stable    |
 | centos stream9  | ghcr.io/otogawakatsutoshi/devcontainers:centos9s       | stable    |
@@ -56,3 +56,9 @@ devcontainer
 ## comming soon
 
 ubuntu (not lts version), gentoo, nixos,Opensuse leap, Opensuse Tumbleweed!
+
+## devcontainer features
+
+devcontaienr features that I am not willing to support, but　debian distributions work at a high rate without any particular thought.
+
+I may support non-debian OSs if there is demand for them.
