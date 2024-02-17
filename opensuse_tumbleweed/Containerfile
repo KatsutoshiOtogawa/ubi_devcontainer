@@ -1,6 +1,6 @@
 FROM opensuse/tumbleweed
 
-COPY gentoo/common-opensuse.sh /
+COPY opensuse_tumbleweed/common-opensuse.sh /
 RUN zypper update -y
 
 ARG INSTALL_ZSH=false
