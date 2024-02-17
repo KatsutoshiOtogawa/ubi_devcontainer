@@ -18,4 +18,6 @@ RUN sed -i '/gnupg2/d' common-redhat.sh
 RUN bash common-redhat.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${USER_GID}" \
     && dnf clean all && rm -rf common-redhat.sh
 
+USER vscode
+
 WORKDIR /workspace
