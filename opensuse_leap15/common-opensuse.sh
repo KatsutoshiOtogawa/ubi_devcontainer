@@ -85,7 +85,7 @@ if [ "${PACKAGES_ALREADY_INSTALLED}" != "true" ]; then
         sed \
         grep \
         which \
-        man-db \
+        man \
         strace \
         "
 
