@@ -66,3 +66,7 @@ ubuntu (not lts version), gentoo, nixos,Opensuse leap, Opensuse Tumbleweed!
 devcontaienr features that I am not willing to support, but　debian distributions work at a high rate without any particular thought.
 
 I may support non-debian OS destiributions if there is demand for them.
+
+## enable rhel subscriptions on ubi image
+
+When running host os is rhel, ubi already has rhel subscriptions enabled [redhat engineer blog](https://rheb.hatenablog.com/entry/2020/06/11/RHUBI-subscription).
