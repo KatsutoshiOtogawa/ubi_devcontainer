@@ -65,4 +65,4 @@ ubuntu (not lts version), gentoo, nixos,Opensuse leap, Opensuse Tumbleweed!
 
 devcontaienr features that I am not willing to support, but　debian distributions work at a high rate without any particular thought.
 
-I may support non-debian OSs if there is demand for them.
+I may support non-debian OS destiributions if there is demand for them.
