@@ -20,4 +20,6 @@ RUN bash /common-archlinux.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${US
 RUN pacman -Sc --noconfirm
 RUN rm -rf /common-archlinux.sh
 
+USER vscode
+
 WORKDIR /workspace

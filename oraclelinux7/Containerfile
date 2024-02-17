@@ -13,4 +13,6 @@ RUN curl https://raw.githubusercontent.com/microsoft/vscode-dev-containers/v0.24
 RUN bash common-redhat.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${USER_GID}" \
     && yum clean all && rm -rf common-redhat.sh
 
+USER vscode
+
 WORKDIR /workspace

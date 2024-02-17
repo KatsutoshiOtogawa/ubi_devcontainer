@@ -16,4 +16,6 @@ RUN bash common-debian.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${USER_G
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf common-debian.sh
 
+USER vscode
+
 WORKDIR /workspace
