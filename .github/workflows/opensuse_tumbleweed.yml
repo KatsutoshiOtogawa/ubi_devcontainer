@@ -1,4 +1,4 @@
-name: Build amazonlinux2 image
+name: Build opensuse_tumbleweed image
 
 on:
   schedule:
@@ -6,14 +6,14 @@ on:
     - cron:  '0 13 1 * *'
   push:
     paths:
-      - 'amazonlinux2/**'
-      - '!amazonlinux2/README.md'
-      - '.github/workflows/amazonlinux2.yml'
+      - 'opensuse_tumbleweed/**'
+      - '!opensuse_tumbleweed/README.md'
+      - '.github/workflows/opensuse_tumbleweed.yml'
   pull_request:
     paths:
-      - 'amazonlinux2/**'
-      - '!amazonlinux2/README.md'
-      - '.github/workflows/amazonlinux2.yml'
+      - 'opensuse_tumbleweed/**'
+      - '!opensuse_tumbleweed/README.md'
+      - '.github/workflows/opensuse_tumbleweed.yml'
 
 # write permission implies read permission.
 permissions:
@@ -25,7 +25,7 @@ permissions:
 
 jobs:
   build-image:
-    name: packaging amazonlinux2 image
+    name: packaging opensuse_tumbleweed image
     runs-on: ubuntu-latest
     env:
       # IMAGE_NAME: ubi-devcontainer
@@ -55,8 +55,8 @@ jobs:
       with:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         tags: |
-          amazonlinux2
-          amazonlinux2_${{ steps.current.outputs.datetime }}
+          opensuse_tumbleweed
+          opensuse_tumbleweed_${{ steps.current.outputs.datetime }}
           ${{ github.sha }}
 
     # This step uses the `docker/build-push-action` action to build the image, based on your repository's `Dockerfile`. If the build succeeds, it pushes the image to GitHub Packages.
@@ -65,7 +65,9 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
-        file: amazonlinux2/Containerfile
+        build-args: |
+          VARIANT=${{ matrix.entry.VARIANT }}
+        file: opensuse_tumbleweed/Containerfile
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}

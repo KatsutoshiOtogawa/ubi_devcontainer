@@ -1,0 +1,16 @@
+FROM opensuse/tumbleweed
+
+COPY gentoo/common-opensuse.sh /
+RUN zypper update -y
+
+ARG INSTALL_ZSH=false
+ARG USERNAME=vscode
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
+RUN bash /common-opensuse.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${USER_GID}" \
+    && zypper clean && rm -rf /common-opensuse.sh
+
+USER vscode
+
+WORKDIR /workspace
