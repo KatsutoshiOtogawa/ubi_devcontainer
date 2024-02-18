@@ -86,6 +86,7 @@ if [ "${PACKAGES_ALREADY_INSTALLED}" != "true" ]; then
         grep \
         which \
         man \
+        man-pages \
         strace \
         "
 
@@ -115,9 +116,8 @@ fi
 
 # Ensure at least the en_US.UTF-8 UTF-8 locale is available.
 # Common need for both applications and things like the agnoster ZSH theme.
-if [ "${LOCALE_ALREADY_SET}" != "true" ] && ! grep -o -E '^\s*en_US.UTF-8\s+UTF-8' /etc/locale.gen > /dev/null; then
-    echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen 
-    locale-gen
+if [ "${LOCALE_ALREADY_SET}" != "true" ] && ! grep -o -E '^LANG=en_US.UTF-8' /etc/locale.conf > /dev/null; then
+    echo "LANG=en_US.UTF-8" >> /etc/locale.conf 
     LOCALE_ALREADY_SET="true"
 fi
 

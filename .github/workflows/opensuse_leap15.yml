@@ -6,14 +6,14 @@ on:
     - cron:  '0 13 1 * *'
   push:
     paths:
-      - 'opensuse_leap/**'
-      - '!opensuse_leap/README.md'
-      - '.github/workflows/opensuse_leap.yml'
+      - 'opensuse_leap15/**'
+      - '!opensuse_leap15/README.md'
+      - '.github/workflows/opensuse_leap15.yml'
   pull_request:
     paths:
-      - 'opensuse_leap/**'
-      - '!opensuse_leap/README.md'
-      - '.github/workflows/opensuse_leap.yml'
+      - 'opensuse_leap15/**'
+      - '!opensuse_leap15/README.md'
+      - '.github/workflows/opensuse_leap15.yml'
 
 # write permission implies read permission.
 permissions:
