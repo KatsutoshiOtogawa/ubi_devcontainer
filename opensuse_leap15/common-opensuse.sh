@@ -74,7 +74,6 @@ if [ "${PACKAGES_ALREADY_INSTALLED}" != "true" ]; then
         less \
         jq \
         lsb-release \
-        libopenssl3 \
         dialog \
         glibc \
         libkrb5-26 \
