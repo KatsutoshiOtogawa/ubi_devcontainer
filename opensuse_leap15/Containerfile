@@ -2,7 +2,7 @@ ARG VARIANT=
 FROM opensuse/leap:${VARIANT}
 
 COPY opensuse_leap15/common-opensuse.sh /
-RUN zypper update -y
+RUN zypper refresh
 
 ARG INSTALL_ZSH=false
 ARG USERNAME=vscode

@@ -78,7 +78,7 @@ if [ "${PACKAGES_ALREADY_INSTALLED}" != "true" ]; then
         dialog \
         glibc \
         libkrb5-26 \
-        libicu73 \
+        libicu69 \
         zlib-devel \
         sudo \
         ncdu \
