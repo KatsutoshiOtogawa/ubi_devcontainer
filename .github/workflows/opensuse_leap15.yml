@@ -73,7 +73,7 @@ jobs:
       with:
         build-args: |
           VARIANT=${{ matrix.entry.VARIANT }}
-        file: fedora/Containerfile
+        file: opensuse_leap15/Containerfile
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
