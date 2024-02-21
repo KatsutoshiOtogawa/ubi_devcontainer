@@ -1,21 +1,20 @@
-name: Build gentoo image
+name: Build postgresql image
 
 on:
   schedule:
-    # gentoo dayily build
     # 分 時 日 月 曜日
-    # 毎週日曜日のビルドをとってくる。
+    # 毎週日曜日にビルド
     - cron:  '0 13 * * 0'
   push:
     paths:
-      - 'gentoo/**'
-      - '!gentoo/README.md'
-      - '.github/workflows/gentoo.yml'
+      - 'postgresql/**'
+      - '!postgresql/README.md'
+      - '.github/workflows/postgresql.yml'
   pull_request:
     paths:
-      - 'gentoo/**'
-      - '!gentoo/README.md'
-      - '.github/workflows/gentoo.yml'
+      - 'postgresql/**'
+      - '!postgresql/README.md'
+      - '.github/workflows/postgresql.yml'
 
 # write permission implies read permission.
 permissions:
@@ -27,9 +26,16 @@ permissions:
 
 jobs:
   build-image:
-    name: packaging gentoo image
+    strategy:
+      matrix:
+        entry:
+          - { VARIANT: '13'}
+          - { VARIANT: '14'}
+          - { VARIANT: '15'}
+    name: packaging postgresql image
     runs-on: ubuntu-latest
     env:
+      # IMAGE_NAME: ubi-devcontainer
       IMAGE_NAME: ${{ github.repository }}
       REGISTRY: ghcr.io
     steps:
@@ -56,8 +62,9 @@ jobs:
       with:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         tags: |
-          gentoo
-          gentoo_${{ steps.current.outputs.datetime }}
+          postgresql
+          postgresql_${{ matrix.entry.VARIANT }}
+          postgresql_${{ matrix.entry.VARIANT }}_${{ steps.current.outputs.datetime }}
           ${{ github.sha }}
 
     # This step uses the `docker/build-push-action` action to build the image, based on your repository's `Dockerfile`. If the build succeeds, it pushes the image to GitHub Packages.
@@ -66,7 +73,9 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
-        file: gentoo/Containerfile
+        build-args: |
+          VARIANT=${{ matrix.entry.VARIANT }}
+        file: postgresql/Containerfile
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
