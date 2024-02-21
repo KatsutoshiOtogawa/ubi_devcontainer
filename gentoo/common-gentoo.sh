@@ -118,7 +118,7 @@ if [ "${PACKAGES_ALREADY_INSTALLED}" != "true" ]; then
         emerge dev-util/quilt
         # using for git-instaweb features.
         emerge www-servers/lighttpd
-        emerge dev-vcs/git
+        # emerge dev-vcs/git
     fi
 
     PACKAGES_ALREADY_INSTALLED="true"
