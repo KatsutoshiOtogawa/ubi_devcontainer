@@ -114,6 +114,10 @@ if [ "${PACKAGES_ALREADY_INSTALLED}" != "true" ]; then
         
     # Install git if not already installed (may be more recent than distro version)
     if ! type git > /dev/null 2>&1; then
+        # use for git-quiltimport features.
+        emerge dev-util/quilt
+        # using for git-instaweb features.
+        emerge www-servers/lighttpd
         emerge dev-vcs/git
     fi
 
