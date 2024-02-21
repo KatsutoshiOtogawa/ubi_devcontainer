@@ -2,8 +2,9 @@ name: Build gentoo image
 
 on:
   schedule:
+    # gentoo dayily build
     # 分 時 日 月 曜日
-    - cron:  '0 13 1 * *'
+    - cron:  '0 13 * * *'
   push:
     paths:
       - 'gentoo/**'
