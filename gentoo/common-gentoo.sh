@@ -117,6 +117,7 @@ if [ "${PACKAGES_ALREADY_INSTALLED}" != "true" ]; then
         # use for git-quiltimport features.
         emerge dev-util/quilt
         # using for git-instaweb features.
+        emerge app-emacs/lua-mode
         emerge www-servers/lighttpd
         # emerge dev-vcs/git
     fi
