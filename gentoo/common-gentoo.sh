@@ -65,7 +65,7 @@ if [ "${PACKAGES_ALREADY_INSTALLED}" != "true" ]; then
     echo '# [Unable to unshare: EPERM](https://github.com/gentoo/gentoo-docker-images/issues/81)' >> /etc/portage/make.conf
     echo 'FEATURES="$FEATURES -ipc-sandbox -network-sandbox -pid-sandbox"' >> /etc/portage/make.conf
 
-    # emerge-webrsync
+    emerge-webrsync
     # libstdc++ is testing package, 
     echo sys-libs/libstdc++-v3 >> /etc/portage/package.accept_keywords/libsdtc
     package_list="\
