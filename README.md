@@ -7,9 +7,9 @@ vscode devcontainer images.
 Write the path to the image written in the support docker image in the image of devcontainer.json.
 
 ```jsonc:.devcontainer/devcontainer.json
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/debian
 {
+  // For format details, see https://aka.ms/devcontainer.json. For config options, see the
+  // README at: https://github.com/devcontainers/templates/tree/main/src/debian
   "name": "ubi8",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
   "image": "ghcr.io/otogawakatsutoshi/devcontainers:ubi8_8.8"
