@@ -1,7 +1,7 @@
 
+.devcontainer/devcontainer.json
 
-
-```jsonc:.devcontainer/devcontainer.json
+```jsonc
 {
   // For format details, see https://aka.ms/devcontainer.json. For config options, see the
   // README at: https://github.com/devcontainers/templates/tree/main/src/debian

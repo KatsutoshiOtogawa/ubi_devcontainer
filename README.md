@@ -4,9 +4,9 @@ vscode devcontainer images.
 
 ## how to use
 
-Write the path to the image written in the support docker image in the image of devcontainer.json.
+Write the path to the image written in the support docker image in the image of .devcontainer/devcontainer.json.
 
-```jsonc:.devcontainer/devcontainer.json
+```jsonc
 {
   // For format details, see https://aka.ms/devcontainer.json. For config options, see the
   // README at: https://github.com/devcontainers/templates/tree/main/src/debian
