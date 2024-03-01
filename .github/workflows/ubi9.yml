@@ -30,6 +30,7 @@ jobs:
         entry:
           - { VARIANT: '9.2'}
           - { VARIANT: '9.3'}
+          
     name: packaging ubi9 image
     runs-on: ubuntu-latest
     env:
