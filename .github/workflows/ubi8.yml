@@ -71,5 +71,3 @@ jobs:
         registry: ${{ env.REGISTRY }}
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-
-# needsを使ってfeaturesが実行されたら
